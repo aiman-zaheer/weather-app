@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Weather Update</title>
+<body>
+    <div id="box">
+        
+        <div id="weathercon">
+            
+            <i class="fa fa-sun fa-3x"style="color:gold;"></i>
+        </div>
+        <div class="info">
+            <h2 class="location" style="color: white;">{%city%},{%country%}</h2>
+            <p id="date" style="color: white;">date</p>
+            <h1 class="temp" style="color: white;">{%temp%}</h1>
+            <h3 class="min-max" style="color: white;">MIN {%tempmin%}| {%tempmax%} MAX</h3>
+        </div>
+
+    </div>
+    <script>
+        const currdate = document.getElementById("date");
+const weathercon = document.getElementById("weathercon");
+const tempcond = "{%weatherStatus%}";
+
+if(tempcond == "Sunny"){
+    weathercon.innerHTML = "<i class='fa-regular fa-sun fa-3x'style='color:gold'></i>";
+}
+else if(tempcond == 'Rainy'){
+    weathercon.innerHTML = "<i class='fa fa-cloud-rain fa-3x'style='color:blue'></i>";
+
+}
+else if(tempcond == 'Cloudy'){
+    weathercon.innerHTML = "<i class='fa fa-cloud fa-3x'style='color:white'></i>";
+
+}
+else if(tempcond == 'Haze'){
+    weathercon.innerHTML = "<i class='fa fa-sun fa-3x'style='color:gold'></i>";
+
+}
+else{
+    weathercon.innerHTML = "<i class='fa fa-cloud fa-3x'style='color:white'></i>";
+} 
+const date = new Date();
+
+const getdate = ()=>{
+    const datelist = Array(6);
+    datelist[0] = "Sunday"
+    datelist[1] = "Monday"
+    datelist[2] = "Tuesday"
+    datelist[3] = "Wednesday"
+    datelist[4] = "Thrusday"
+    datelist[5] = "Friday"
+    datelist[6] = "Saturday"
+
+    const daynow = datelist[date.getDay()]
+
+    return daynow;
+}
+const curdaytime = ()=>{
+    console.log("A");
+    const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const curmon = month[date.getMonth()];
+    const datenow = date.getDate();
+    
+    let hours = date.getHours();
+    let mintues = date.getMinutes();
+
+    let ampm = "AM";
+    if(hours>11){   //to check for am and pm
+        ampm = "PM";
+        if(hours>12){
+            hours = hours - 12;  //to not show date like 13 14
+        }
+    }
+    if(mintues < 10){
+        mintues = "0" + mintues;   //for 10:05 we dont want to diplay 10:5
+    }
+    return `${curmon}  ${datenow} | ${hours} : ${mintues} ${ampm}`
+}
+currdate.innerHTML = getdate() + ' | ' + curdaytime();
+    </script>
+
+</body>
+</html>
