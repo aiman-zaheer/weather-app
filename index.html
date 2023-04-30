@@ -9,18 +9,19 @@
     <title>Weather Update</title>
 <body>
     <div id="box">
-        
+        <form action="/" method="post" class="inp">
+            <label for="city"><b>City: </b><input type="text" placeholder="Enter City Name" name="cityname" class="field"></label>
+            <button type="submit" class="btn">GO</button>
+        </form>
         <div id="weathercon">
-            
             <i class="fa fa-sun fa-3x"style="color:gold;"></i>
         </div>
         <div class="info">
-            <h2 class="location" style="color: white;">{%city%},{%country%}</h2>
+            <h2 class="location" style="color: white;">{%city%} , {%country%}</h2>
             <p id="date" style="color: white;">date</p>
-            <h1 class="temp" style="color: white;">{%temp%}</h1>
-            <h3 class="min-max" style="color: white;">MIN {%tempmin%}| {%tempmax%} MAX</h3>
+            <h1 class="temp" style="color: white;">{%temp%} <sup>o</sup>C</h1>
+            <h3 class="min-max" style="color: white;">MIN {%tempmin%} <sup>o</sup>C | {%tempmax%} <sup>o</sup>C MAX</h3>
         </div>
-
     </div>
     <script>
         const currdate = document.getElementById("date");
